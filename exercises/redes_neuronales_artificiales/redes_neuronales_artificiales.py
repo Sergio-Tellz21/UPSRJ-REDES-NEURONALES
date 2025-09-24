@@ -1,5 +1,6 @@
 from exercises.redes_neuronales_artificiales.single_perceptron import InputData, Perceptron
 import random
+import random
 # Adjust the import path to include the parent directory for py_utils
 import sys
 import os
