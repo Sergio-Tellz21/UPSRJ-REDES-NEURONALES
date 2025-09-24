@@ -47,9 +47,18 @@ set_logging(log_file='single_perceptron.log')
 #           - un peso "w"
 #
 class InputData:
-    def __init__(self):
-        pass
-
+    def __init__(self, x: float):
+        # Parametro de entrada de usuario
+        self.x = x
+        # Inicializacion aleatoria
+        self.w = self.init_weight()
+    
+    def init_weight(self):
+        return random.random()
+    
+    def update_weight(self, w: float):
+        self.w = w
+    
 clog(InputData)
 
 # Paso 2: Abstracción de una neurona.
@@ -67,7 +76,19 @@ clog(InputData)
 #           - una salida "a" definida por su función de activación
 #
 class Perceptron:
-    def __init__(self):
-        pass
+    def __init__(self, inputs: list[InputData], b: float):
+        self.inputs = inputs
+        self.b = b
+        self.z = self.forward()
+        self.a = self.activation()
+        
+    def forward(self):
+        z = 0
+        for input in self.inputs:
+            z = z + (input.x * input.w)
+        return z + self.b
     
+    def activation(self):
+        return 1.0 / (1.0 + np.exp(-self.z))
+
 clog(Perceptron)
